@@ -1,3 +1,5 @@
+import { Browser, Page } from 'puppeteer';
+
 export interface CourseWithoutItems {
     href: string;
     courseName: string;
@@ -28,3 +30,7 @@ export interface Credentials {
     password: string;
 }
 
+export interface UkeyInstance {
+    browser: Browser;
+    page: Page;
+}
