@@ -4,5 +4,15 @@ credentials
 credentials.txt
 credentials.json
 
+# Potential database files
+db.json
+database.json
+
 # npm
 node_modules/
+
+# IDEs
+.vscode/
+
+# Source maps
+*.js.map
