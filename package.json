@@ -7,6 +7,14 @@
     "name": "ukeysuite",
     "version": "1.0.0",
     "description": "A suite to retrieve course information, keep a database and download items from UKEY (Uludağ KEY)",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "/dist",
+        "/README.md",
+        "/README.tr.md",
+        "/LICENSE"
+    ],
     "devDependencies": {
         "@types/node": "^20.8.3",
         "typescript": "^5.2.2"
