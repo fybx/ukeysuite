@@ -15,3 +15,16 @@ export interface CourseWithItems {
     course: CourseWithoutItems;
     items: CourseItem[] | undefined;
 }
+
+export interface CourseItemDatabase {
+    creationEpoch: number;
+    courses: CourseWithItems[];
+    courseCount: number;
+    checksums: string[];
+}
+
+export interface Credentials {
+    username: string;
+    password: string;
+}
+
