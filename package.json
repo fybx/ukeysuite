@@ -1,23 +1,29 @@
 {
-  "dependencies": {
-    "puppeteer": "^21.3.8"
-  },
-  "type": "module",
-  "name": "ukeysuite",
-  "version": "1.0.0",
-  "description": "A suite to retrieve course information, keep a database and download items from UKEY (Uludağ KEY)",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fybx/ukeysuite.git"
-  },
-  "author": "Ferit Yiğit BALABAN",
-  "license": "GPL-2.0-only",
-  "bugs": {
-    "url": "https://github.com/fybx/ukeysuite/issues"
-  },
-  "homepage": "https://github.com/fybx/ukeysuite#readme"
+    "dependencies": {
+        "puppeteer": "^21.3.8",
+        "ts-md5": "^1.3.1"
+    },
+    "type": "commonjs",
+    "name": "ukeysuite",
+    "version": "1.0.0",
+    "description": "A suite to retrieve course information, keep a database and download items from UKEY (Uludağ KEY)",
+    "devDependencies": {
+        "@types/node": "^20.8.3",
+        "typescript": "^5.2.2"
+    },
+    "scripts": {
+        "test": "tsc && node dist/playground.js",
+        "build": "tsc",
+        "watch": "tsc -w"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fybx/ukeysuite.git"
+    },
+    "author": "Ferit Yiğit BALABAN",
+    "license": "GPL-2.0-only",
+    "bugs": {
+        "url": "https://github.com/fybx/ukeysuite/issues"
+    },
+    "homepage": "https://github.com/fybx/ukeysuite#readme"
 }
