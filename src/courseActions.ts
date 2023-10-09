@@ -7,6 +7,19 @@ const selectorTbody =
     'body > div.wrapper.row-offcanvas.row-offcanvas-left.transparent > aside.right-side.row-offcanvas-bottom > section.content > div.row > div > div > div > div > div > div > table > tbody';
 
 /** Gets items listed on a page, returning an array of course objects.
+ * @param {string} credentialsPath Path to credentials file
+ * @param {string} courseLink URL link to course's main page
+ * @returns {Promise<CourseItem[] | undefined>} An array of course item objects
+ */
+export async function getItems(
+    credentialsPath: string,
+    courseLink: string
+): Promise<CourseItem[] | undefined> {
+    const instance = await loginToUkey(getCredentials(credentialsPath));
+    return getItemsInstance(instance, courseLink);
+}
+
+/** Gets items listed on a page, returning an array of course objects.
  * @param {UkeyInstance} loggedInInstance An UkeyInstance
  * @param {string} courseLink URL link to course's main page
  * @returns {Promise<CourseItem[] | undefined>} An array of course item objects
