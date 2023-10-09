@@ -60,6 +60,37 @@ export async function getItemsInstance(
     }, selectorTbody);
 }
 
+/** Fetches all items of a course and saves a database file
+ * @param {string} databaseOutputFilePath Path to database output file
+ * @param {UkeyInstance} loggedInInstance A puppeteer.Page object that is logged into UKEY
+ * @param {CourseWithoutItems[]} allCoursesList An array of all courses taken by the student
+ */
+export async function createCourseDatabaseFile(
+    databaseOutputFilePath: string,
+    loggedInInstance: UkeyInstance,
+    allCoursesList: CourseWithoutItems[]
+): Promise<void> {
+    let database: CourseItemDatabase = {
+        creationEpoch: Date.now(),
+        courses: [],
+        courseCount: 0,
+        checksums: [],
+    };
+
+    for (let i = 0; i < allCoursesList.length; i++) {
+        const items = await getItemsInstance(loggedInInstance, allCoursesList[i].href);
+        database.courses.push({
+            course: allCoursesList[i],
+            items: items,
+        });
+        database.courseCount++;
+    }
+
+    database = addChecksums(database);
+    const databaseSerialized = JSON.stringify(database, null, 4);
+    writeFileSync(databaseOutputFilePath, databaseSerialized);
+}
+
 /**
  * Adds checksums for items in a database
  * @param {CourseItemDatabase} database A valid database file
