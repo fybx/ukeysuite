@@ -3,3 +3,6 @@ cred
 credentials
 credentials.txt
 credentials.json
+
+# npm
+node_modules/
