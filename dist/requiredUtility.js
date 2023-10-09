@@ -17,7 +17,7 @@ const selectorRadioOgrenci = 'body > div > div.row > div > div.body.col-lg-12 > 
 const selectorButtonLogin = 'body > div > div.row > div > div.body.col-lg-12 > div.row.bg-white.no-padding > div.pull-right.col-lg-5 > form > div:nth-child(4) > button';
 /** Opens and reads the credentials file, returning it as a dictionary.
  * @param {string} credentialsPath Path to credentials file
- * @returns {{username: string, password: string}} An object of username and password
+ * @returns {Credentials} An object of username and password
  */
 function getCredentials(credentialsPath) {
     return JSON.parse((0, fs_1.readFileSync)(credentialsPath, 'utf-8'));

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCourseDatabaseFile = exports.getItemsByPage = exports.getItems = void 0;
+exports.createCourseDatabaseFile = exports.getItemsInstance = exports.getItems = void 0;
 const requiredUtility_js_1 = require("./requiredUtility.js");
 const fs_1 = require("fs");
 const ts_md5_1 = require("ts-md5");
@@ -22,7 +22,7 @@ const selectorTbody = 'body > div.wrapper.row-offcanvas.row-offcanvas-left.trans
 function getItems(credentialsPath, courseLink) {
     return __awaiter(this, void 0, void 0, function* () {
         const instance = yield (0, requiredUtility_js_1.loginToUkey)((0, requiredUtility_js_1.getCredentials)(credentialsPath));
-        return getItemsByPage(instance, courseLink);
+        return getItemsInstance(instance, courseLink);
     });
 }
 exports.getItems = getItems;
@@ -31,7 +31,7 @@ exports.getItems = getItems;
  * @param {string} courseLink URL link to course's main page
  * @returns {Promise<CourseItem[] | undefined>} An array of course item objects
  */
-function getItemsByPage(loggedInInstance, courseLink) {
+function getItemsInstance(loggedInInstance, courseLink) {
     return __awaiter(this, void 0, void 0, function* () {
         yield Promise.all([loggedInInstance.goto(courseLink), loggedInInstance.waitForNavigation()]);
         yield Promise.all([
@@ -63,11 +63,11 @@ function getItemsByPage(loggedInInstance, courseLink) {
         }, selectorTbody);
     });
 }
-exports.getItemsByPage = getItemsByPage;
+exports.getItemsInstance = getItemsInstance;
 /** Fetches all items of a course and saves a database file
  * @param {string} databaseOutputFilePath Path to database output file
- * @param {puppeteer.Page} loggedInInstance A puppeteer.Page object that is logged into UKEY
- * @param {} allCoursesList An array of all courses taken by the student
+ * @param {UkeyInstance} loggedInInstance A puppeteer.Page object that is logged into UKEY
+ * @param {CourseWithoutItems[]} allCoursesList An array of all courses taken by the student
  */
 function createCourseDatabaseFile(databaseOutputFilePath, loggedInInstance, allCoursesList) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -78,7 +78,7 @@ function createCourseDatabaseFile(databaseOutputFilePath, loggedInInstance, allC
             checksums: [],
         };
         for (let i = 0; i < allCoursesList.length; i++) {
-            const items = yield getItemsByPage(loggedInInstance, allCoursesList[i].href);
+            const items = yield getItemsInstance(loggedInInstance, allCoursesList[i].href);
             database.courses.push({
                 course: allCoursesList[i],
                 items: items,
@@ -91,6 +91,11 @@ function createCourseDatabaseFile(databaseOutputFilePath, loggedInInstance, allC
     });
 }
 exports.createCourseDatabaseFile = createCourseDatabaseFile;
+/**
+ * Adds checksums for items in a database
+ * @param {CourseItemDatabase} database A valid database file
+ * @returns Database with checksums array modified
+ */
 function addChecksums(database) {
     if (database.courseCount == 0)
         console.error('Cannot add checksums to empty database');
