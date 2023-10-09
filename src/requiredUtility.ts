@@ -20,3 +20,21 @@ export function writeCredentials(credentialsPath: string, credentials: Credentia
     writeFileSync(credentialsPath, JSON.stringify(credentials, null, 4));
 }
 
+/** Returns a puppeteer browser after logging in on UKEY.
+ * @param {Credentials} credentials An object that contains username and password
+ * @returns {UkeyInstance} An object of browser and page objects
+ */
+export async function loginToUkey(credentials: Credentials): Promise<UkeyInstance> {
+    const browser = await launch({ headless: false });
+    const page = (await browser.pages())[0];
+
+    await page.goto(urlUkey);
+    await page.waitForSelector('#KullaniciKodu');
+    await page.waitForSelector('#sifre');
+    await page.type('#KullaniciKodu', credentials.username);
+    await page.type('#sifre', credentials.password);
+    await page.click(selectorRadioOgrenci);
+    await page.click(selectorButtonLogin);
+
+    return { browser, page };
+}
