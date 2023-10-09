@@ -4,8 +4,8 @@ import { getCredentials, loginToUkey } from './requiredUtility';
 
 async function play() {
     const i = await loginToUkey(getCredentials('credentials.json'));
-    const result = await fetchCoursesInstance(i);
-    if (result) await createCourseDatabaseFile('db.json', i, result);
+    const courses = await fetchCoursesInstance(i);
+    courses!.forEach((course) => {console.log(course.courseName)});
     await i.browser.close();
 }
 
