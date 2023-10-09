@@ -59,3 +59,21 @@ export async function getItemsInstance(
         }
     }, selectorTbody);
 }
+
+/**
+ * Adds checksums for items in a database
+ * @param {CourseItemDatabase} database A valid database file
+ * @returns Database with checksums array modified 
+ */
+function addChecksums(database: CourseItemDatabase): CourseItemDatabase {
+    if (database.courseCount == 0) console.error('Cannot add checksums to empty database');
+
+    database.courses.forEach((course) => {
+        if (course.items)
+            course.items.forEach((item) => {
+                database.checksums.push(Md5.hashStr(item.itemName + item.itemType + item.itemWeek));
+            });
+    });
+
+    return database;
+}
