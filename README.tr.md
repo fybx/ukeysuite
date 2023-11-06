@@ -10,8 +10,9 @@ Kullanıcı adınız (öğrenci numaranız), şifreniz ve UKEY'de erişilen içe
 
 ### 1. Kimlik bilgileri ve UKEY'e giriş
 
-```json
 Dosya: credentials.json
+
+```json
 {
     username: "032090001",
     password: "çokgüvenli",
@@ -57,7 +58,7 @@ Bu kütüphaneyi geliştirmek ve iyileştirmek için her türlü katkıya açı�
 
 Küçük bir detay, projeye eklenen her kod ve özellik, projenin tabi olduğu lisans altında lisanslanacaktır. Eğer kafanız karıştıysa, katkı süreciyle ilgili sorularınız varsa bir issue açarak benimle iletişime geçin.
 
-## Credits
+## Kapanış
 
 Herhangi bir konuda işbirliği için benimle iletişime geçmekten çekinmeyin!
 
@@ -69,7 +70,7 @@ Ferit Yiğit BALABAN, <fybalaban@fybx.dev>
 
 [tag1]: https://www.npmjs.com/package/ukeysuite/v/1.0.0
 [2]: https://fybx.dev
-[3]: https://twitter.com/
+[3]: https://x.com/fybalaban
 [4]: https://www.linkedin.com/in/fybx
 [5]: https://bento.me/balaban
 [lukey]: https://ukey.uludag.edu.tr/

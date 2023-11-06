@@ -10,8 +10,9 @@ None of your data – including your username (student code), password or any of
 
 ### 1. Credentials and logging into UKEY
 
-```json
 File: credentials.json
+
+```json
 {
     username: "032090001",
     password: "verysecure",
@@ -57,7 +58,7 @@ I welcome contributions to enhance and improve this library! Whether you want to
 
 Just so you know, by contributing to this project, you agree to license your contributions under the same license governing this library. If you're unsure or have questions about the contribution process, please get in touch with me by opening an issue.
 
-## Kapanış
+## Credits
 
 Feel free to contact me for collaboration on anything!
 
